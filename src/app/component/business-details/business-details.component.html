@@ -1,0 +1,6 @@
+<ng-container *ngIf="businessEntry$ | async as businessEntry">
+  <div [routerLink]="['/business/', businessId]" class="business-card border rounded">
+    <h3>{{ businessEntry.displayedWhat }}</h3>
+    <h4>{{ businessEntry.displayedWhere }}</h4>
+  </div>
+</ng-container>

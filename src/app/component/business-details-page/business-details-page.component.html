@@ -1,0 +1,29 @@
+<ng-container *ngIf="businessEntry$ | async as businessEntry">
+  <div class="row">
+    <div class="col-6">
+      <div class="business-name border rounded">
+        <h3>{{ businessEntry.displayedWhat }}</h3>
+        <h4>{{ businessEntry.displayedWhere }}</h4>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="business-hours border rounded">
+        <ng-container *ngFor="let day of businessEntry.openingHours.listOfDays">
+          <div class="d-flex">
+            <h5>{{ day.name | uppercase }}:</h5>
+            <div class="align-right">
+              <ng-container *ngIf="day.workingHours; else closed">
+                <ng-container *ngFor="let workingHour of day.workingHours">
+                  <p>{{ workingHour.start }}-{{ workingHour.end }}</p>
+                </ng-container>
+              </ng-container>
+              <ng-template #closed>
+                <p>CLOSED</p>
+              </ng-template>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</ng-container>
